@@ -33,6 +33,34 @@ this 2
 `, buffer.String())
 
 	})
+	t.Run("with empty", func(t *testing.T) {
+		buffer := &bytes.Buffer{}
+		err := Uniq(strings.NewReader(`
+
+
+asd
+asd
+end
+end
+is
+sad
+test
+the
+this
+this
+`), buffer)
+		require.NoError(t, err)
+		assert.Equal(t, ` 3
+asd 2
+end 2
+is 1
+sad 1
+test 1
+the 1
+this 2
+`, buffer.String())
+
+	})
 	t.Run("one", func(t *testing.T) {
 		buffer := &bytes.Buffer{}
 		err := Uniq(strings.NewReader(`asd`), buffer)

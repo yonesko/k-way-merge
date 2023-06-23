@@ -10,10 +10,12 @@ func Uniq(input io.Reader, output io.Writer) error {
 	scanner := bufio.NewScanner(input)
 	count := 0
 	prevText := ""
+	first := true
 	for scanner.Scan() {
 		text := scanner.Text()
-		if prevText == "" {
+		if first {
 			prevText = text
+			first = false
 		}
 		if text != prevText {
 			_, err := output.Write([]byte(fmt.Sprintf("%s %d\n", prevText, count)))

@@ -32,10 +32,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = sortedFile.Close()
-	if err != nil {
-		log.Fatal(err)
-	}
 
 	output, err := os.Create(fmt.Sprintf("%s_uniq", *input))
 	if err != nil {
