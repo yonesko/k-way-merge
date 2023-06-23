@@ -37,6 +37,10 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	_, err = sortedFile.Seek(0, 0)
+	if err != nil {
+		log.Fatal(err)
+	}
 	err = uniq.Uniq(sortedFile, output)
 	if err != nil {
 		log.Fatal(err)

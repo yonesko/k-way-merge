@@ -2,8 +2,11 @@ package uniq
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"log"
+	"os"
 	"strings"
 	"testing"
 )
@@ -89,4 +92,21 @@ asd
 		assert.Equal(t, ``, buffer.String())
 
 	})
+}
+
+func Test(t *testing.T) {
+	open, err := os.Open("/Users/gdanichev/GolandProjects/github.com/yonesko/k-way-merge.git/input_sorted")
+	require.NoError(t, err)
+	output, err := os.Create(fmt.Sprintf("%s_uniq", open.Name()))
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = Uniq(open, output)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = output.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
