@@ -10,8 +10,8 @@ import (
 )
 
 var (
-	input    = flag.String("input", "input.txt", "")
-	max_rows = flag.Int("N", 100, "")
+	input   = flag.String("input", "input.txt", "")
+	maxRows = flag.Int("N", 100, "")
 )
 
 func main() {
@@ -20,15 +20,15 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if *max_rows <= 1 {
-		log.Fatal("bad max_rows")
+	if *maxRows <= 1 {
+		log.Fatal("bad maxRows")
 	}
 	sortedFile, err := os.Create(fmt.Sprintf("%s_sorted", *input))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	err = sort.Sort(file, *max_rows, sortedFile)
+	err = sort.Sort(file, *maxRows, sortedFile)
 	if err != nil {
 		log.Fatal(err)
 	}
